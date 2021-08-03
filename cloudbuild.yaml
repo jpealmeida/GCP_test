@@ -9,3 +9,11 @@ steps:
     - '-r'
     - 'repository'
     - 'gs://${_GCS_BUCKET}/repository'
+- name: gcr.io/cloud-builders/gsutil
+  args:
+    - '-m'
+    - 'rsync'
+    - '-d'
+    - '-r'
+    - 'gs://${_GCS_BUCKET}/repository'
+    - 'repository'
