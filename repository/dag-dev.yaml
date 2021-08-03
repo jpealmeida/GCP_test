@@ -1,0 +1,701 @@
+dags:
+
+    Avro:
+        status: True
+        startdatestr: '2020-08-05'
+        enddatestr: '2030-12-31'
+        frequency: 
+        concurrency: 6                 #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'd_service_run'
+                active: False
+                src_feed: 'd_service'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_avro_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_avro_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_02:
+                id: 'f_customer_account_profile_run'
+                active: False
+                src_feed: 'f_customer_account_profile'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_avro_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_avro_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_03:
+                id: 'd_bill_cycle_run'
+                active: False
+                src_feed: 'd_bill_cycle'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_avro_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_avro_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_04:
+                id: 'f_call_detail_record_run'
+                active: False
+                src_feed: 'f_call_detail_record'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_avro_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_avro_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_05:
+                id: 'feed_test_run'
+                active: True
+                src_feed: 'feed_test'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_avro_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_avro2_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+
+    norm_test:
+        status: True
+        startdatestr: '2020-08-17'
+        enddatestr: '2030-12-31'
+        frequency: 
+        concurrency: 10                 #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'f_contract_association_profile_run'
+                active: False
+                src_feed: 'f_contract_association_profile'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_test_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_02:
+                id: 'f_equipment_sale_run'
+                active: False
+                src_feed: 'f_equipment_sale'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_test_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_03:
+                id: 'ngbi_extr_cdr_ppb_run'
+                active: False
+                src_feed: 'ngbi_extr_cdr_ppb'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_04:
+                id: 'ngbi_extr_cdr_ppb_free_run'
+                active: False
+                src_feed: 'ngbi_extr_cdr_ppb_free'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_05:
+                id: 'sapmovimfinevo_run'
+                active: False
+                src_feed: 'sapmovimfinevo'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_06:
+                id: 'age_tst_norm_anon_run'
+                active: False
+                src_feed: 'age_tst_norm_anon'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_07:
+                id: 'norm_timestamp_test_run'
+                active: False
+                src_feed: 'norm_timestamp_test'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_08:
+                id: 's15_eai_gl_response_run'
+                active: False
+                src_feed: 's15_eai_gl_response'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_09:
+                id: 'test_default_date_norm_anon_run'
+                active: False
+                src_feed: 'test_default_date_norm_anon'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_10:
+                id: 'd_commission_type_run'
+                active: False
+                src_feed: 'd_commission_type'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_11:
+                id: 'd_lead_run'
+                active: False
+                src_feed: 'd_lead'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_12:
+                id: 'f_campaign_contact_run'
+                active: False
+                src_feed: 'f_campaign_contact'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_13:
+                id: 'f_fixed_installation_address_run'
+                active: False
+                src_feed: 'f_fixed_installation_address'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_14:
+                id: 'ngbi_extr_cdc_d_base_station_run'
+                active: False
+                src_feed: 'ngbi_extr_cdc_d_base_station'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_15:
+                id: 'ngbi_extr_cdc_f_fixed_instal_addr_run'
+                active: False
+                src_feed: 'ngbi_extr_cdc_f_fixed_instal_addr'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_16:
+                id: 'addressline_test_run'
+                active: False
+                src_feed: 'addressline_test'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_17:
+                id: 'upg_test_feed_run'
+                active: True
+                src_feed: 'upg_test_feed'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+
+
+    gcs_to_bq:
+        status: True
+        startdatestr: '2020-07-15'
+        enddatestr: '2030-12-31'
+        frequency: ''
+        concurrency: 30                #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'ngbi_extr_cdc_d_address_run'
+                active: True
+                src_feed: 'ngbi_extr_cdc_d_address'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_gcs_to_bq_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_gcs_to_bq_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_02:
+                id: 'file_test_run'
+                active: True
+                src_feed: 'file_test'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_gcs_to_bq_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_gcs_to_bq_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+    upgrade:
+        status: True
+        startdatestr: '2020-08-17'
+        enddatestr: '2030-12-31'
+        frequency: 
+        concurrency: 10                 #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'ngbi_extr_cdc_d_base_station_run'
+                active: True
+                src_feed: 'ngbi_extr_cdc_d_base_station'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_norm_test_<env>2.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+
+    df_basic:
+        status: True
+        startdatestr: '2020-10-28'
+        enddatestr: '2030-12-31'
+        frequency: ''
+        concurrency: 18                #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'd_operator_run'
+                active: False
+                src_feed: 'd_operator'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_02:
+                id: 'd_priceable_item_ict_run'
+                active: False
+                src_feed: 'd_priceable_item_ict'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_03:
+                id: 'd_service_run'
+                active: False
+                src_feed: 'd_service'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_04:
+                id: 'd_business_line_run'
+                active: True
+                src_feed: 'd_business_line'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_05:
+                id: 'd_phone_run'
+                active: False
+                src_feed: 'd_phone'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_06:
+                id: 'd_bill_cycle_run'
+                active: False
+                src_feed: 'd_bill_cycle'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_07:
+                id: 'd_currency_code_run'
+                active: False
+                src_feed: 'd_currency_code'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_08:
+                id: 'd_customer_account_run'
+                active: False
+                src_feed: 'd_customer_account'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_09:
+                id: 'd_call_completion_run'
+                active: False
+                src_feed: 'd_call_completion'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_10:
+                id: 'd_measurement_unit_run'
+                active: False
+                src_feed: 'd_measurement_unit'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_11:
+                id: 'd_tax_rate_run'
+                active: False
+                src_feed: 'd_tax_rate'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_12:
+                id: 'd_priceable_item_run'
+                active: False
+                src_feed: 'd_priceable_item'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_13:
+                id: 'd_payment_method_run'
+                active: False
+                src_feed: 'd_payment_method'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_14:
+                id: 'd_hour_run'
+                active: False
+                src_feed: 'd_hour'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_15:
+                id: 'corridor_plan_id_values_run'
+                active: False
+                src_feed: 'corridor_plan_id_values'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_16:
+                id: 'd_article_run'
+                active: False
+                src_feed: 'd_article'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_17:
+                id: 'd_base_station_run'
+                active: False
+                src_feed: 'd_base_station'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_18:
+                id: 'd_customer_class_run'
+                active: False
+                src_feed: 'd_customer_class'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_19:
+                id: 'd_contract_cancellation_reason_run'
+                active: False
+                src_feed: 'd_contract_cancellation_reason'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_20:
+                id: 'd_contract_classification_run'
+                active: False
+                src_feed: 'd_contract_classification'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_21:
+                id: 'd_contract_product_run'
+                active: False
+                src_feed: 'd_contract_product'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_22:
+                id: 'd_contract_status_run'
+                active: False
+                src_feed: 'd_contract_status'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_23:
+                id: 'd_contract_type_run'
+                active: False
+                src_feed: 'd_contract_type'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_24:
+                id: 'd_contract_usage_type_run'
+                active: False
+                src_feed: 'd_contract_usage_type'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_25:
+                id: 'ngbi_extr_cdc_d_address_run'
+                active: False
+                src_feed: 'ngbi_extr_cdc_d_address'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_26:
+                id: 'd_credit_debit_mov_type_run'
+                active: False
+                src_feed: 'd_credit_debit_mov_type'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_27:
+                id: 'd_debit_credit_reason_run'
+                active: False
+                src_feed: 'd_debit_credit_reason'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_28:
+                id: 'd_discount_plan_run'
+                active: False
+                src_feed: 'd_discount_plan'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_29:
+                id: 'd_s15_contract_run'
+                active: False
+                src_feed: 'd_s15_contract'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_30:
+                id: 'd_s15_po_run'
+                active: False
+                src_feed: 'd_s15_po'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_31:
+                id: 'd_s15_po_business_area_run'
+                active: False
+                src_feed: 'd_s15_po_business_area'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_32:
+                id: 'd_s15_po_status_oper_run'
+                active: False
+                src_feed: 'd_s15_po_status_oper'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_33:
+                id: 'd_s15_po_type_run'
+                active: False
+                src_feed: 'd_s15_po_type'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_34:
+                id: 'd_sales_force_run'
+                active: False
+                src_feed: 'd_sales_force'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_35:
+                id: 'd_supplementary_service_run'
+                active: False
+                src_feed: 'd_supplementary_service'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_36:
+                id: 'd_unit_credit_run'
+                active: False
+                src_feed: 'd_unit_credit'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+            task_37:
+                id: 'd_pricing_plan_run'
+                active: False
+                src_feed: 'd_pricing_plan'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_basic_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_basic_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+    bngbi:
+        status: True
+        startdatestr: '2020-03-01'
+        enddatestr: '2030-12-31'
+        frequency: 
+        concurrency: 1                 #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'd_service_run'
+                active: True
+                src_feed: 'd_service'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_bngbi_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_bngbi_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
+
+    de_anon:
+        status: True
+        startdatestr: '2020-05-01'
+        enddatestr: '2030-12-31'
+        frequency: 
+        concurrency: 1                 #Concurrency defines how many running task instances a DAG is allowed to have, beyond which point things get queued.
+        max_active_runs: 1              #The Airflow scheduler will run no more than max_active_runs DagRuns of your DAG at a given time
+        tasks:
+            task_01:
+                id: 'ngbi_extr_cdc_f_occ_arb'
+                active: True
+                src_feed: 'ngbi_extr_cdc_f_occ_arb'
+                config_g: 'control_sheet/<env>/rawtoraw_general_control_sheet_norm_<env>.yml'
+                config_s: 'control_sheet/<env>/rawtoraw_specific_control_sheet_de_anon_<env>.yml'
+                trigger_rule: "all_success"
+                dwnstr: 
+                start_delay:
