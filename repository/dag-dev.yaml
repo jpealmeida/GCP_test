@@ -1,7 +1,7 @@
 dags:
 
     Avro:
-        status: True
+        status: False
         startdatestr: '2020-08-05'
         enddatestr: '2030-12-31'
         frequency: 
