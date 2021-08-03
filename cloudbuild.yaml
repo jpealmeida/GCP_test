@@ -7,5 +7,5 @@ steps:
     - 'rsync'
     - '-d'
     - '-r'
-    - 'dags'
+    - 'repository'
     - 'gs://${_GCS_BUCKET}/repository'
